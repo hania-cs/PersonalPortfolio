@@ -68,21 +68,21 @@ const Desktop = () => {
     { id: "experience" as WindowType, label: "Experience", icon: Briefcase },
     { id: "skills" as WindowType, label: "Skills", icon: Sparkles },
   ];
-const decorativeIcons = [
-  {
-    label: "Resume.pdf",
-    icon: FileText,
-    action: () => {
-      const link = document.createElement("a");
-      link.href = "/Resume.pdf";
-      link.download = "Hania_Seifeldeen_Resume.pdf";
-      link.click();
-    },
-  },
-  { id: "contact" as WindowType, label: "Contact Me", icon: Mail },
-  { id: "pet" as WindowType, label: "Pixel Pet", icon: Heart },
-];
 
+  const decorativeIcons = [
+    {
+      label: "Resume.pdf",
+      icon: FileText,
+      action: () => {
+        const link = document.createElement("a");
+        link.href = "/Resume.pdf";
+        link.download = "Hania_Seifeldeen_Resume.pdf";
+        link.click();
+      },
+    },
+    { id: "contact" as WindowType, label: "Contact Me", icon: Mail },
+    { id: "pet" as WindowType, label: "Pixel Pet", icon: Heart },
+  ];
 
   const getWindowContent = (type: WindowType) => {
     switch (type) {
@@ -119,7 +119,7 @@ const decorativeIcons = [
   };
 
   return (
-    <div className="h-screen w-screen overflow-hidden bg-background relative">
+    <div className="h-screen w-screen overflow-hidden bg-background relative touch-manipulation">
       {/* Gradient mesh background */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-card" />
       
@@ -143,7 +143,7 @@ const decorativeIcons = [
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/3 rounded-full blur-[150px]" />
 
       {/* Desktop Icons - Left Column */}
-      <div className="absolute top-4 left-4 sm:top-8 sm:left-8 flex flex-col gap-4 sm:gap-6">
+      <div className="absolute top-4 left-4 sm:top-8 sm:left-8 flex flex-col gap-3 sm:gap-6 z-10">
         {desktopIcons.map((item, index) => (
           <DesktopIcon
             key={item.id}
@@ -156,7 +156,7 @@ const decorativeIcons = [
       </div>
 
       {/* Desktop Icons - Right Column (decorative) */}
-      <div className="absolute top-4 right-4 sm:top-8 sm:right-8 flex flex-col gap-4 sm:gap-6">
+      <div className="absolute top-4 right-4 sm:top-8 sm:right-8 flex flex-col gap-3 sm:gap-6 z-10">
         {decorativeIcons.map((item, index) => (
           <DesktopIcon
             key={item.label}
@@ -169,13 +169,13 @@ const decorativeIcons = [
       </div>
 
       {/* Center Content - Welcome Widget & Sticky Notes */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="relative flex flex-col items-center gap-8 pointer-events-auto">
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none px-4">
+        <div className="relative flex flex-col items-center gap-6 sm:gap-8 pointer-events-auto">
           {/* Welcome Widget */}
           <WelcomeWidget />
 
-          {/* Sticky Notes */}
-          <div className="flex flex-wrap justify-center gap-4 sm:gap-6 max-w-lg px-4">
+          {/* Sticky Notes - Hidden on mobile */}
+          <div className="hidden sm:flex flex-wrap justify-center gap-4 sm:gap-6 max-w-lg px-4">
             <StickyNote color="yellow" rotation={-3} delay={0.5}>
               ☕ Fueled by coffee & curiosity. Currently obsessed with building cool stuff!
             </StickyNote>
