@@ -70,7 +70,7 @@ const Desktop = () => {
   ];
 
   const decorativeIcons = [
-    { label: "Resume.pdf", icon: FileText, action: () => window.open("/ResumeHaniaSeifeldeen.pdf", "_blank") },
+    { label: "Resume.pdf", icon: FileText, action: () => window.open("/Resume", "_blank") },
     { id: "contact" as WindowType, label: "Contact Me", icon: Mail },
     { id: "pet" as WindowType, label: "Pixel Pet", icon: Heart },
   ];
