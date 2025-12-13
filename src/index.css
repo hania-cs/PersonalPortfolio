@@ -1,0 +1,155 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 14%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 14%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 187 85% 53%;
+    --primary-foreground: 222 47% 11%;
+
+    --secondary: 222 47% 20%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 222 30% 25%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 280 65% 60%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 222 30% 25%;
+    --input: 222 30% 25%;
+    --ring: 187 85% 53%;
+
+    --radius: 1rem;
+
+    /* Custom tokens */
+    --glass: 222 47% 16%;
+    --glass-border: 222 30% 30%;
+    --dock: 222 47% 8%;
+    --window-header: 222 47% 18%;
+    --shadow-glow: 187 85% 53%;
+  }
+
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-glass/80 backdrop-blur-xl border border-glass-border/50;
+  }
+
+  .glass-strong {
+    @apply bg-glass/90 backdrop-blur-2xl border border-glass-border/60;
+  }
+
+  .window-shadow {
+    box-shadow: 
+      0 25px 50px -12px rgba(0, 0, 0, 0.5),
+      0 0 0 1px hsl(var(--glass-border) / 0.3);
+  }
+
+  .dock-shadow {
+    box-shadow: 
+      0 -10px 40px -10px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 0 hsl(var(--glass-border) / 0.3);
+  }
+
+  .icon-glow {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .icon-glow:hover {
+    filter: drop-shadow(0 0 12px hsl(var(--primary) / 0.6));
+    transform: scale(1.15) translateY(-8px);
+  }
+
+  .window-enter {
+    animation: windowOpen 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .dock-bounce {
+    animation: dockBounce 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent;
+    background-size: 200% auto;
+    animation: shimmer 3s linear infinite;
+  }
+
+  .glow-primary {
+    box-shadow: 0 0 30px hsl(var(--primary) / 0.3);
+  }
+}
+
+@keyframes windowOpen {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes dockBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
