@@ -143,14 +143,14 @@ const Desktop = () => {
       <div className="absolute -bottom-32 -right-32 w-[400px] h-[400px] bg-accent/6 rounded-full blur-[100px]" />
 
       {/* MOBILE LAYOUT */}
-      <div className={`sm:hidden flex flex-col h-full pb-20 ${hasOpenWindow ? 'hidden' : ''}`}>
+      <div className={`sm:hidden flex flex-col h-full ${hasOpenWindow ? 'hidden' : ''}`}>
         {/* Welcome Widget at top */}
         <div className="pt-8 px-4 flex justify-center">
           <WelcomeWidget />
         </div>
         
         {/* Icons Grid - 3 columns */}
-        <div className="flex-1 flex items-center justify-center px-6 py-8">
+        <div className="flex-1 flex items-center justify-center px-6 py-6">
           <div className="grid grid-cols-3 gap-6">
             {allIcons.map((item, index) => (
               <DesktopIcon
