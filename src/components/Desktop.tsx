@@ -68,12 +68,21 @@ const Desktop = () => {
     { id: "experience" as WindowType, label: "Experience", icon: Briefcase },
     { id: "skills" as WindowType, label: "Skills", icon: Sparkles },
   ];
+const decorativeIcons = [
+  {
+    label: "Resume.pdf",
+    icon: FileText,
+    action: () => {
+      const link = document.createElement("a");
+      link.href = "/Resume.pdf";
+      link.download = "Hania_Seifeldeen_Resume.pdf";
+      link.click();
+    },
+  },
+  { id: "contact" as WindowType, label: "Contact Me", icon: Mail },
+  { id: "pet" as WindowType, label: "Pixel Pet", icon: Heart },
+];
 
-  const decorativeIcons = [
-    { label: "Resume.pdf", icon: FileText, action: () => window.open("/Resume", "_blank") },
-    { id: "contact" as WindowType, label: "Contact Me", icon: Mail },
-    { id: "pet" as WindowType, label: "Pixel Pet", icon: Heart },
-  ];
 
   const getWindowContent = (type: WindowType) => {
     switch (type) {
