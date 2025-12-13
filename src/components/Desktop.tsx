@@ -118,6 +118,9 @@ const Desktop = () => {
     }
   };
 
+  const hasOpenWindow = openWindows.length > 0;
+  const allIcons = [...desktopIcons, ...decorativeIcons];
+
   return (
     <div className="h-screen w-screen overflow-hidden bg-background relative touch-manipulation">
       {/* Gradient mesh background */}
@@ -138,53 +141,73 @@ const Desktop = () => {
       
       {/* Soft ambient glow - bottom right */}
       <div className="absolute -bottom-32 -right-32 w-[400px] h-[400px] bg-accent/6 rounded-full blur-[100px]" />
-      
-      {/* Center subtle glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/3 rounded-full blur-[150px]" />
 
-      {/* Desktop Icons - Left Column */}
-      <div className="absolute top-4 left-4 sm:top-8 sm:left-8 flex flex-col gap-3 sm:gap-6 z-10">
-        {desktopIcons.map((item, index) => (
-          <DesktopIcon
-            key={item.id}
-            icon={item.icon}
-            label={item.label}
-            onClick={() => openWindow(item.id)}
-            delay={index * 0.1}
-          />
-        ))}
-      </div>
-
-      {/* Desktop Icons - Right Column (decorative) */}
-      <div className="absolute top-4 right-4 sm:top-8 sm:right-8 flex flex-col gap-3 sm:gap-6 z-10">
-        {decorativeIcons.map((item, index) => (
-          <DesktopIcon
-            key={item.label}
-            icon={item.icon}
-            label={item.label}
-            onClick={item.id ? () => openWindow(item.id!) : item.action}
-            delay={index * 0.1 + 0.5}
-          />
-        ))}
-      </div>
-
-      {/* Center Content - Welcome Widget & Sticky Notes */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none px-4">
-        <div className="relative flex flex-col items-center gap-6 sm:gap-8 pointer-events-auto">
-          {/* Welcome Widget */}
+      {/* MOBILE LAYOUT */}
+      <div className={`sm:hidden flex flex-col h-full pb-20 ${hasOpenWindow ? 'hidden' : ''}`}>
+        {/* Welcome Widget at top */}
+        <div className="pt-8 px-4 flex justify-center">
           <WelcomeWidget />
+        </div>
+        
+        {/* Icons Grid - 3 columns */}
+        <div className="flex-1 flex items-center justify-center px-6 py-8">
+          <div className="grid grid-cols-3 gap-6">
+            {allIcons.map((item, index) => (
+              <DesktopIcon
+                key={item.label}
+                icon={item.icon}
+                label={item.label}
+                onClick={'id' in item && item.id ? () => openWindow(item.id!) : ('action' in item ? item.action : undefined)}
+                delay={index * 0.05}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
 
-          {/* Sticky Notes - Hidden on mobile */}
-          <div className="hidden sm:flex flex-wrap justify-center gap-4 sm:gap-6 max-w-lg px-4">
-            <StickyNote color="yellow" rotation={-3} delay={0.5}>
-              ☕ Fueled by coffee & curiosity. Currently obsessed with building cool stuff!
-            </StickyNote>
-            <StickyNote color="pink" rotation={2} delay={0.7}>
-              🎯 Fun fact: I debug best at 2 AM with lo-fi beats playing
-            </StickyNote>
-            <StickyNote color="blue" rotation={-2} delay={0.9}>
-              💡 Welcome to my portfolio 😁 Click the icons to explore!
-            </StickyNote>
+      {/* DESKTOP LAYOUT */}
+      <div className="hidden sm:block">
+        {/* Desktop Icons - Left Column */}
+        <div className="absolute top-8 left-8 flex flex-col gap-6 z-10">
+          {desktopIcons.map((item, index) => (
+            <DesktopIcon
+              key={item.id}
+              icon={item.icon}
+              label={item.label}
+              onClick={() => openWindow(item.id)}
+              delay={index * 0.1}
+            />
+          ))}
+        </div>
+
+        {/* Desktop Icons - Right Column */}
+        <div className="absolute top-8 right-8 flex flex-col gap-6 z-10">
+          {decorativeIcons.map((item, index) => (
+            <DesktopIcon
+              key={item.label}
+              icon={item.icon}
+              label={item.label}
+              onClick={item.id ? () => openWindow(item.id!) : item.action}
+              delay={index * 0.1 + 0.5}
+            />
+          ))}
+        </div>
+
+        {/* Center Content - Welcome Widget & Sticky Notes */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none px-4">
+          <div className="relative flex flex-col items-center gap-8 pointer-events-auto">
+            <WelcomeWidget />
+            <div className="flex flex-wrap justify-center gap-6 max-w-lg px-4">
+              <StickyNote color="yellow" rotation={-3} delay={0.5}>
+                ☕ Fueled by coffee & curiosity. Currently obsessed with building cool stuff!
+              </StickyNote>
+              <StickyNote color="pink" rotation={2} delay={0.7}>
+                🎯 Fun fact: I debug best at 2 AM with lo-fi beats playing
+              </StickyNote>
+              <StickyNote color="blue" rotation={-2} delay={0.9}>
+                💡 Welcome to my portfolio 😁 Click the icons to explore!
+              </StickyNote>
+            </div>
           </div>
         </div>
       </div>
@@ -202,11 +225,13 @@ const Desktop = () => {
         </Window>
       ))}
 
-      {/* Dock */}
-      <Dock
-        onOpenWindow={openWindow}
-        openWindows={openWindows.map((w) => w.id)}
-      />
+      {/* Dock - hidden on mobile when window is open */}
+      <div className={`${hasOpenWindow ? 'hidden sm:block' : ''}`}>
+        <Dock
+          onOpenWindow={openWindow}
+          openWindows={openWindows.map((w) => w.id)}
+        />
+      </div>
     </div>
   );
 };
