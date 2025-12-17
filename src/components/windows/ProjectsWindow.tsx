@@ -3,12 +3,34 @@ import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 
 const projects = [
+  
   {
     title: "Vertexa Digital Studio",
     description:
       "Designed and developed the official Vertexa Digital Studio website using React, creating a modern, responsive, and user-friendly platform. Focused on clean design, smooth navigation, and performance optimization to deliver a professional online presence.",
     tech: ["ReactJS", "CSS"],
     link: "https://www.vertexa.digital",
+    github: "https://github.com/hania-cs/Vertexa-Digital-Studios",
+    gradient: "from-primary to-cyan-400",
+    type: "code",
+  },
+  {
+    title: "Karm El Anab",
+    description:
+      "Developed a role-based farmer and admin management web application using React, TypeScript, Vite, TailwindCSS, Supabase, PostgreSQL and shadcn-ui for a university student's project that enables admin-approved farmer authentication, farm and ground data management, equipment rental requests, and centralized administrative control with a relational database–driven design.",
+    tech: ["ReactTS", "TailwindCSS", "Supabase", "shadcn-ui", "Vite", "PostgreSQL",],
+    link: "https://karm3inab.vercel.app/",
+    github: "https://github.com/hania-cs/Karm_El_Anab",
+    gradient: "from-primary to-cyan-400",
+    type: "code",
+  },
+  {
+    title: "CrispyTime",
+    description:
+      "Designed and developed a responsive, sleek designed restaurant website using ReactTS, Vite, TailwindCSS and shadcn-ui, that allows users to add menu items to a cart, manage order quantities, and send the finalized order to the restaurant via WhatsApp in a structured, readable message format.",
+    tech: ["ReactTS", "TailwindCSS", "shadcn-ui", "Vite"],
+    link: "https://crispy-time.vercel.app/",
+    github: "https://github.com/hania-cs/CrispyTime",
     gradient: "from-primary to-cyan-400",
     type: "code",
   },
@@ -18,6 +40,7 @@ const projects = [
       "Designed and developed the official ConnectServices SARL website using React, creating a modern, responsive, and user-friendly platform. Focused on clean design, smooth navigation, and performance optimization to deliver a professional online presence.",
     tech: ["ReactJS", "CSS"],
     link: "https://www.connect-services.me",
+    github: "https://github.com/hania-cs/ConnectServicesSARL",
     gradient: "from-primary to-cyan-400",
     type: "code",
   },
@@ -36,6 +59,7 @@ const projects = [
       "Built a glitch-inspired portfolio using React, Vite, and CSS to showcase projects and experience, featuring responsive design and creative visual effects",
     tech: ["ReactJS", "CSS"],
     link: "https://glitch-portfolio-teal.vercel.app/",
+    github: "https://github.com/hania-cs/GlitchPortfolio",
     gradient: "from-green-400 to-emerald-500",
     type: "code",
   },
@@ -45,6 +69,7 @@ const projects = [
       "Built a responsive single-page website for a tiramisu shop, built with React and Vite. Showcases products with a clean design, fast performance, and seamless deployment on Vercel.",
     tech: ["ReactJS", "CSS"],
     link: "https://glitch-portfolio-teal.vercel.app/",
+    github: "https://github.com/hania-cs/TiramisuChoice",
     gradient: "from-accent to-pink-400",
     type: "code",
   },
@@ -54,6 +79,7 @@ const projects = [
       "Created a responsive React portfolio to showcase a psychology student's skills, research, and achievements with a clean and user-friendly design.",
     tech: ["ReactJS", "CSS"],
     link: "https://manuelaportfolio.vercel.app/",
+    github: "https://github.com/hania-cs/ManuelaPortfolio",
     gradient: "from-primary to-cyan-400",
     type: "code",
   },
