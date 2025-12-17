@@ -190,7 +190,15 @@ export const ProjectsWindow = () => {
                   href={project.link}
                   className="p-2 rounded-lg hover:bg-secondary transition-colors text-muted-foreground hover:text-foreground"
                 >
-                  <ExternalLink className="w-4 h-4" />
+                  <ExternalLink target="_blank" className="w-4 h-4" />
+                </a>
+              )}
+               {project.github && (
+                <a
+                  href={project.github}
+                  className="p-2 rounded-lg hover:bg-secondary transition-colors text-muted-foreground hover:text-foreground"
+                >
+                  <ExternalLink target="_blank" className="w-4 h-4" />
                 </a>
               )}
             </div>
